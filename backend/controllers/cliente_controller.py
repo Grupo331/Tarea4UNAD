@@ -1,8 +1,14 @@
 # =============================================================================
 # cliente_controller.py — Controlador de operaciones sobre Clientes
 # =============================================================================
-# Media entre la interfaz gráfica y el modelo Cliente.
-# Gestiona la lista de clientes en memoria y expone operaciones CRUD.
+"""
+Módulo controlador para la gestión de Clientes.
+
+Este módulo actúa como intermediario entre la capa de interfaz gráfica y la capa 
+de datos (el modelo Cliente). Su responsabilidad es mantener el estado de los 
+clientes en memoria, además de encapsular y exponer todas las operaciones del 
+ciclo de vida (CRUD), garantizando la validación y evitando registros duplicados.
+"""
 # =============================================================================
 
 from backend.models.cliente import Cliente
@@ -15,45 +21,64 @@ logger = obtener_logger("controllers.cliente")
 
 
 class ClienteController:
-    """Controlador que gestiona las operaciones CRUD sobre clientes.
+    """
+    Controlador central para la gestión de operaciones CRUD sobre clientes.
 
-    Mantiene una lista en memoria de todos los clientes registrados
-    y proporciona métodos para crear, buscar, actualizar y eliminar.
+    Mantiene el estado de la colección de clientes en memoria y expone una API
+    para crear, buscar, actualizar y eliminar registros de clientes de forma segura,
+    ejecutando las respectivas validaciones de negocio en cada paso.
 
     Attributes:
-        _clientes (list[Cliente]): Lista de clientes registrados.
+        _clientes (list[Cliente]): Almacenamiento interno de la lista de clientes registrados.
     """
 
     def __init__(self):
+        """Inicializa el controlador con una lista vacía de clientes."""
         self._clientes: list = []
 
     @property
     def clientes(self) -> list:
-        """Lista de todos los clientes (copia para seguridad)."""
+        """
+        Obtiene una copia segura de la lista de todos los clientes registrados.
+
+        Returns:
+            list[Cliente]: Copia de la lista interna de clientes para evitar
+            modificaciones no autorizadas en el arreglo original.
+        """
         return self._clientes.copy()
 
     @property
     def total_clientes(self) -> int:
+        """
+        Calcula el número total de clientes registrados en el sistema.
+
+        Returns:
+            int: Cantidad de clientes actualmente en memoria.
+        """
         return len(self._clientes)
 
     def crear_cliente(self, nombre: str, cedula: str,
                       telefono: str, email: str) -> Cliente:
-        """Crea un nuevo cliente con validación completa.
+        """
+        Crea y registra un nuevo cliente aplicando reglas de validación.
 
-        Demuestra try/except/finally: siempre registra el intento.
+        Verifica que no exista un cliente con la misma cédula en el sistema antes
+        de crear el objeto. Este método incluye un bloque try/except/finally 
+        para asegurar el registro de intentos en los logs en todo momento.
 
         Args:
-            nombre: Nombre completo.
-            cedula: Documento de identidad.
-            telefono: Número de teléfono.
-            email: Correo electrónico.
+            nombre (str): Nombre completo del cliente.
+            cedula (str): Documento de identidad (debe ser único).
+            telefono (str): Número de teléfono de contacto.
+            email (str): Dirección de correo electrónico válida.
 
         Returns:
-            El cliente creado.
+            Cliente: La instancia del cliente recién creado.
 
         Raises:
-            ClienteValidacionError: Si los datos son inválidos.
-            OperacionError: Si la cédula ya está registrada.
+            OperacionError: Si ya existe un cliente registrado con la cédula provista.
+            ClienteValidacionError: Si alguno de los datos proporcionados es inválido
+            según las reglas del modelo.
         """
         operacion = "crear_cliente"
         try:
@@ -81,16 +106,17 @@ class ClienteController:
             logger.info(f"[FINALLY] Operación '{operacion}' finalizada")
 
     def buscar_por_id(self, cliente_id: str) -> Cliente:
-        """Busca un cliente por su ID.
+        """
+        Busca y retorna un cliente específico mediante su identificador interno (UUID).
 
         Args:
-            cliente_id: ID del cliente.
+            cliente_id (str): ID interno único generado por el sistema.
 
         Returns:
-            El cliente encontrado.
+            Cliente: El objeto cliente correspondiente al ID.
 
         Raises:
-            ClienteNoEncontradoError: Si no se encuentra.
+            ClienteNoEncontradoError: Si no existe ningún cliente con ese ID.
         """
         for cliente in self._clientes:
             if cliente.id == cliente_id:
@@ -98,16 +124,17 @@ class ClienteController:
         raise ClienteNoEncontradoError(cliente_id)
 
     def buscar_por_cedula(self, cedula: str) -> Cliente:
-        """Busca un cliente por su cédula.
+        """
+        Busca un cliente exacto utilizando su documento de identidad.
 
         Args:
-            cedula: Número de cédula.
+            cedula (str): Número de documento de identidad a buscar.
 
         Returns:
-            El cliente encontrado.
+            Cliente: El objeto cliente correspondiente a la cédula.
 
         Raises:
-            ClienteNoEncontradoError: Si no se encuentra.
+            ClienteNoEncontradoError: Si la cédula no está registrada en el sistema.
         """
         cedula = cedula.strip()
         for cliente in self._clientes:
@@ -116,30 +143,36 @@ class ClienteController:
         raise ClienteNoEncontradoError(cedula)
 
     def buscar_por_nombre(self, nombre: str) -> list:
-        """Busca clientes cuyo nombre contenga el texto dado.
+        """
+        Realiza una búsqueda parcial en los nombres de los clientes.
+        
+        La búsqueda no distingue entre mayúsculas y minúsculas (case-insensitive).
 
         Args:
-            nombre: Texto a buscar (búsqueda parcial, case-insensitive).
+            nombre (str): Subcadena de texto a buscar.
 
         Returns:
-            Lista de clientes que coinciden.
+            list[Cliente]: Lista de clientes que contienen la subcadena en su nombre.
         """
         nombre_lower = nombre.lower()
         return [c for c in self._clientes if nombre_lower in c.nombre.lower()]
 
     def actualizar_cliente(self, cliente_id: str, **kwargs) -> Cliente:
-        """Actualiza los datos de un cliente existente.
+        """
+        Modifica los atributos permitidos de un cliente ya existente.
 
         Args:
-            cliente_id: ID del cliente a actualizar.
-            **kwargs: Campos a actualizar (nombre, telefono, email).
+            cliente_id (str): Identificador único del cliente a actualizar.
+            **kwargs: Diccionario con los campos a modificar (nombre, telefono, email).
+                      (La cédula no debe actualizarse por este medio).
 
         Returns:
-            El cliente actualizado.
+            Cliente: El objeto cliente ya actualizado.
 
         Raises:
-            ClienteNoEncontradoError: Si no se encuentra.
-            ClienteValidacionError: Si los nuevos datos son inválidos.
+            ClienteNoEncontradoError: Si el ID del cliente no existe.
+            ClienteValidacionError: Si alguno de los nuevos valores introducidos 
+            incumple las reglas de validación del modelo.
         """
         cliente = self.buscar_por_id(cliente_id)
 
@@ -161,16 +194,17 @@ class ClienteController:
         return cliente
 
     def eliminar_cliente(self, cliente_id: str) -> Cliente:
-        """Elimina un cliente del sistema.
+        """
+        Remueve un cliente permanentemente del registro en memoria del sistema.
 
         Args:
-            cliente_id: ID del cliente a eliminar.
+            cliente_id (str): Identificador único del cliente a eliminar.
 
         Returns:
-            El cliente eliminado.
+            Cliente: El objeto cliente que fue eliminado de la memoria.
 
         Raises:
-            ClienteNoEncontradoError: Si no se encuentra.
+            ClienteNoEncontradoError: Si no se encuentra un cliente con ese ID.
         """
         for i, cliente in enumerate(self._clientes):
             if cliente.id == cliente_id:

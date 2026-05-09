@@ -1,7 +1,14 @@
 # =============================================================================
 # asesor_controller.py — Controlador de operaciones sobre Asesores
 # =============================================================================
-# Gestiona la lista de asesores en memoria y expone operaciones CRUD.
+"""
+Módulo controlador para la gestión de Asesores.
+
+Este módulo define la clase AsesorController, la cual es responsable de la 
+gestión del ciclo de vida (CRUD) de los objetos Asesor en memoria. Implementa 
+lógica de negocio como la validación de unicidad (por cédula), múltiples 
+criterios de búsqueda y el manejo de excepciones personalizadas.
+"""
 # =============================================================================
 
 from backend.models.asesor import Asesor
@@ -14,7 +21,12 @@ logger = obtener_logger("controllers.asesor")
 
 
 class AsesorNoEncontradoError(EntidadNoEncontradaError):
-    """El asesor buscado no existe en el sistema."""
+    """
+    Excepción lanzada cuando un asesor específico no puede ser localizado.
+    
+    Hereda de EntidadNoEncontradaError y proporciona un código de error
+    estandarizado para facilitar su manejo en las capas superiores.
+    """
 
     def __init__(self, identificador: str = ""):
         super().__init__("Asesor no encontrado", identificador)
@@ -22,42 +34,61 @@ class AsesorNoEncontradoError(EntidadNoEncontradaError):
 
 
 class AsesorController:
-    """Controlador que gestiona las operaciones CRUD sobre asesores.
+    """
+    Controlador central para la gestión de operaciones CRUD sobre asesores.
 
-    Mantiene una lista en memoria de todos los asesores registrados
-    y proporciona métodos para crear, buscar, actualizar y eliminar.
+    Mantiene el estado de la colección de asesores en memoria y encapsula toda
+    la lógica de negocio relacionada con la creación, recuperación, actualización
+    y eliminación de estos registros.
 
     Attributes:
-        _asesores (list[Asesor]): Lista de asesores registrados.
+        _asesores (list[Asesor]): Almacenamiento interno de la lista de asesores.
     """
 
     def __init__(self):
+        """Inicializa el controlador con una lista vacía de asesores."""
         self._asesores: list = []
 
     @property
     def asesores(self) -> list:
-        """Lista de todos los asesores (copia para seguridad)."""
+        """
+        Obtiene una copia segura de la lista de todos los asesores registrados.
+        
+        Returns:
+            list[Asesor]: Copia de la lista interna de asesores para evitar
+            modificaciones no autorizadas desde el exterior.
+        """
         return self._asesores.copy()
 
     @property
     def total_asesores(self) -> int:
+        """
+        Obtiene el número total de asesores registrados.
+        
+        Returns:
+            int: Cantidad de elementos en la lista de asesores.
+        """
         return len(self._asesores)
 
     def crear_asesor(self, nombre: str, cedula: str,
                      especialidad: str = "") -> Asesor:
-        """Crea un nuevo asesor con validación completa.
+        """
+        Crea y registra un nuevo asesor con validación completa.
+
+        Verifica que no exista un asesor previamente registrado con la misma cédula
+        antes de instanciar y almacenar el nuevo registro.
 
         Args:
-            nombre: Nombre completo.
-            cedula: Documento de identidad.
-            especialidad: Área de especialidad (opcional).
+            nombre (str): Nombre completo del asesor.
+            cedula (str): Documento de identidad único.
+            especialidad (str, optional): Área de experiencia del asesor. Por defecto es "".
 
         Returns:
-            El asesor creado.
+            Asesor: La instancia del asesor recién creado y registrado.
 
         Raises:
-            ValidacionError: Si los datos son inválidos.
-            OperacionError: Si la cédula ya está registrada.
+            OperacionError: Si la cédula ya está registrada en el sistema.
+            ValidacionError: Si los datos provistos no cumplen las reglas del modelo Asesor.
         """
         operacion = "crear_asesor"
         try:
@@ -85,10 +116,17 @@ class AsesorController:
             logger.info(f"[FINALLY] Operación '{operacion}' finalizada")
 
     def buscar_por_id(self, asesor_id: str) -> Asesor:
-        """Busca un asesor por su ID.
+        """
+        Busca y retorna un asesor específico mediante su identificador único (UUID).
+
+        Args:
+            asesor_id (str): El ID interno generado para el asesor.
+
+        Returns:
+            Asesor: El objeto asesor correspondiente al ID.
 
         Raises:
-            AsesorNoEncontradoError: Si no se encuentra.
+            AsesorNoEncontradoError: Si no existe ningún asesor con el ID provisto.
         """
         for asesor in self._asesores:
             if asesor.id == asesor_id:
@@ -96,10 +134,17 @@ class AsesorController:
         raise AsesorNoEncontradoError(asesor_id)
 
     def buscar_por_cedula(self, cedula: str) -> Asesor:
-        """Busca un asesor por su cédula.
+        """
+        Busca y retorna un asesor mediante su documento de identidad.
+
+        Args:
+            cedula (str): Cédula de identidad a buscar.
+
+        Returns:
+            Asesor: El objeto asesor correspondiente a la cédula.
 
         Raises:
-            AsesorNoEncontradoError: Si no se encuentra.
+            AsesorNoEncontradoError: Si la cédula no está registrada.
         """
         cedula = cedula.strip()
         for asesor in self._asesores:
@@ -108,28 +153,46 @@ class AsesorController:
         raise AsesorNoEncontradoError(cedula)
 
     def buscar_por_nombre(self, nombre: str) -> list:
-        """Busca asesores cuyo nombre contenga el texto dado."""
+        """
+        Realiza una búsqueda parcial y case-insensitive por el nombre de los asesores.
+
+        Args:
+            nombre (str): Subcadena de texto a buscar dentro de los nombres.
+
+        Returns:
+            list[Asesor]: Lista de asesores cuyos nombres coincidan total o parcialmente.
+        """
         nombre_lower = nombre.lower()
         return [a for a in self._asesores if nombre_lower in a.nombre.lower()]
 
     def buscar_por_especialidad(self, especialidad: str) -> list:
-        """Busca asesores por especialidad."""
+        """
+        Filtra los asesores según su área de especialidad de manera case-insensitive.
+
+        Args:
+            especialidad (str): Área temática a buscar.
+
+        Returns:
+            list[Asesor]: Lista de asesores que pertenecen a la especialidad indicada.
+        """
         esp_lower = especialidad.lower()
         return [a for a in self._asesores if a.especialidad == esp_lower]
 
     def actualizar_asesor(self, asesor_id: str, **kwargs) -> Asesor:
-        """Actualiza los datos de un asesor existente.
+        """
+        Actualiza selectivamente los atributos de un asesor existente.
 
         Args:
-            asesor_id: ID del asesor a actualizar.
-            **kwargs: Campos a actualizar (nombre, especialidad).
+            asesor_id (str): Identificador único del asesor a modificar.
+            **kwargs: Diccionario de atributos a actualizar (e.g., nombre, especialidad).
+                      Nota: La cédula no se debe actualizar por este medio.
 
         Returns:
-            El asesor actualizado.
+            Asesor: El objeto asesor con sus atributos actualizados.
 
         Raises:
-            AsesorNoEncontradoError: Si no se encuentra.
-            ValidacionError: Si los nuevos datos son inválidos.
+            AsesorNoEncontradoError: Si el asesor especificado no existe.
+            ValidacionError: Si los nuevos valores no pasan las reglas de validación.
         """
         asesor = self.buscar_por_id(asesor_id)
 
@@ -149,16 +212,17 @@ class AsesorController:
         return asesor
 
     def eliminar_asesor(self, asesor_id: str) -> Asesor:
-        """Elimina un asesor del sistema.
+        """
+        Elimina un asesor del registro del sistema.
 
         Args:
-            asesor_id: ID del asesor a eliminar.
+            asesor_id (str): Identificador único del asesor a remover.
 
         Returns:
-            El asesor eliminado.
+            Asesor: El objeto asesor que fue eliminado.
 
         Raises:
-            AsesorNoEncontradoError: Si no se encuentra.
+            AsesorNoEncontradoError: Si el asesor especificado no existe.
         """
         for i, asesor in enumerate(self._asesores):
             if asesor.id == asesor_id:
@@ -168,11 +232,28 @@ class AsesorController:
         raise AsesorNoEncontradoError(asesor_id)
 
     def obtener_nombres_asesores(self) -> list:
-        """Retorna lista de nombres para usar en combos de selección."""
+        """
+        Genera una lista de representación en texto de los asesores.
+        
+        Ideal para poblar componentes de interfaz gráfica como ComboBoxes.
+
+        Returns:
+            list[str]: Lista de cadenas en formato "Nombre (Cédula)".
+        """
         return [f"{a.nombre} ({a.cedula})" for a in self._asesores]
 
     def obtener_mapa_asesores(self) -> dict:
-        """Retorna mapeo display_name → Asesor para selección en combos."""
+        """
+        Genera un diccionario que relaciona la representación visual de un asesor
+        con su objeto correspondiente.
+
+        Esto facilita la recuperación del objeto Asesor a partir de la selección
+        del usuario en la interfaz gráfica.
+
+        Returns:
+            dict[str, Asesor]: Mapeo donde la clave es "Nombre (Cédula)" 
+            y el valor es la instancia Asesor.
+        """
         return {
             f"{a.nombre} ({a.cedula})": a for a in self._asesores
         }
