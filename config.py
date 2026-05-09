@@ -1,10 +1,21 @@
 # =============================================================================
 # config.py — Constantes globales del sistema Software FJ
 # =============================================================================
-# Centraliza tarifas, configuraciones y constantes para facilitar cambios
-# sin modificar lógica de negocio. Todas las tarifas son en pesos colombianos.
-# =============================================================================
+"""
+Módulo de configuración y constantes globales.
 
+Este módulo centraliza todas las variables de configuración, tarifas de servicios, 
+máquinas de estado para reservas, rutas del sistema y parámetros estéticos de la 
+interfaz gráfica (colores, fuentes y dimensiones). El objetivo de este archivo 
+es proveer un punto único de modificación para parámetros que pueden cambiar 
+en el tiempo, evitando así la necesidad de alterar el código fuente o la lógica 
+de negocio.
+
+Notas:
+    - Todas las tarifas monetarias están expresadas en Pesos Colombianos (COP).
+    - Los colores y fuentes están adaptados para el framework Tkinter.
+"""
+# =============================================================================
 import os
 
 # ─── Información de la empresa ───────────────────────────────────────────────
