@@ -1,0 +1,440 @@
+[2026-05-04 21:37:49] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-04 21:37:49] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-04 21:37:55] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 1: Crear cliente válido
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.cliente] Cliente creado: Juan Carlos Pérez (Cédula: 12345678, ID: a8385bad)
+[2026-05-04 21:37:55] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 2: Crear cliente con email inválido
+[2026-05-04 21:37:55] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 3: Reservar sala disponible por 2 horas (costo base)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva creada [2407d476]: Cliente=Juan Carlos Pérez, Servicio=Sala Reunión A, Duración=2 hora(s)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Costo calculado para sala 'Sala Reunión A': $100,000
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [2407d476]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [2407d476] procesada exitosamente. Costo: $100,000
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [2407d476]: ÉXITO
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Horario registrado en sala 'Sala Reunión A': 2026-05-10 09:00-11:00
+[2026-05-04 21:37:55] [INFO] [softwarefj.controllers.reserva] Reserva completada [2407d476]: Juan Carlos Pérez → Sala Reunión A = $100,000
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 4: Reservar sala ya ocupada (conflicto de horario)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.cliente] Cliente creado: Ana García (Cédula: 11223344, ID: 07570a69)
+[2026-05-04 21:37:55] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva creada [6c5ca594]: Cliente=Ana García, Servicio=Sala Reunión A, Duración=1 hora(s)
+[2026-05-04 21:37:55] [WARNING] [softwarefj.controllers.reserva] Reserva fallida: Reserva
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 5: Alquilar 5 laptops por 3 días con IVA (sobrecarga)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva creada [aa783645]: Cliente=Juan Carlos Pérez, Servicio=Laptop, Duración=3 dia(s)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Costo calculado para equipo 'Laptop': 5 uds × $107,100 = $535,500
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [aa783645]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [aa783645] procesada exitosamente. Costo: $535,500
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [aa783645]: ÉXITO
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Stock actualizado 'Laptop': -5 → 95 disponibles
+[2026-05-04 21:37:55] [INFO] [softwarefj.controllers.reserva] Reserva completada [aa783645]: Juan Carlos Pérez → Laptop = $535,500
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 6: Alquilar más equipos que stock disponible
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva creada [31a2cf7d]: Cliente=Ana García, Servicio=Laptop, Duración=1 dia(s)
+[2026-05-04 21:37:55] [WARNING] [softwarefj.controllers.reserva] Reserva fallida: Reserva
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 7: Asesoría legal 1 hora con descuento 10% + IVA (sobrecarga completa)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva creada [a115c64d]: Cliente=Ana García, Servicio=Asesoría Legal, Duración=1 hora(s)
+[2026-05-04 21:37:55] [DEBUG] [softwarefj.models.servicio] Recargo asesoría legal (+15%): +$12,852
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Costo calculado para asesoría 'Asesoría Legal': $98,532
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [a115c64d]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [a115c64d] procesada exitosamente. Costo: $98,532
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [a115c64d]: ÉXITO
+[2026-05-04 21:37:55] [INFO] [softwarefj.controllers.reserva] Reserva completada [a115c64d]: Ana García → Asesoría Legal = $98,532
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 8: Flujo completo de estados: Confirmada → En Curso → Completada
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [2407d476]: Estado cambiado 'Confirmada' → 'En Curso'
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [2407d476]: Estado cambiado 'En Curso' → 'Completada'
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 9: Cancelar reserva ya completada (transición inválida)
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Horario liberado en sala 'Sala Reunión A': 2026-05-10 09:00-11:00
+[2026-05-04 21:37:55] [INFO] [softwarefj.controllers.reserva] [FINALLY] Cancelación [2407d476]: recurso_liberado=True
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 10: Buscar cliente inexistente
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 11: Crear reserva con objeto cliente inválido (encadenamiento)
+[2026-05-04 21:37:55] [WARNING] [softwarefj.controllers.reserva] Reserva fallida: N/A
+[2026-05-04 21:37:55] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 12: Reserva → Confirmar → Marcar No Asistió
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva creada [1d294a11]: Cliente=Ana García, Servicio=Sala Capacitación A, Duración=1 dia(s)
+[2026-05-04 21:37:55] [DEBUG] [softwarefj.models.servicio] Recargo por capacidad alta (+20%): +$70,000
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Costo calculado para sala 'Sala Capacitación A': $420,000
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [1d294a11]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [1d294a11] procesada exitosamente. Costo: $420,000
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [1d294a11]: ÉXITO
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Horario registrado en sala 'Sala Capacitación A': 2026-05-18 08:00-17:00
+[2026-05-04 21:37:55] [INFO] [softwarefj.controllers.reserva] Reserva completada [1d294a11]: Ana García → Sala Capacitación A = $420,000
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.reserva] Reserva [1d294a11]: Estado cambiado 'Confirmada' → 'No Asistió'
+[2026-05-04 21:37:55] [INFO] [softwarefj.models.servicio] Horario liberado en sala 'Sala Capacitación A': 2026-05-18 08:00-17:00
+[2026-05-04 21:38:03] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-04 21:38:03] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 21:38:03] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-04 21:38:03] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-04 21:38:04] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-04 21:38:07] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:38:07] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-04 21:38:07] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-04 21:39:43] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:39:46] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:39:50] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 21:39:53] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: logs
+[2026-05-04 21:41:19] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:41:37] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:41:39] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:41:43] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:41:45] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:41:47] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:41:48] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:41:49] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 21:41:53] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: logs
+[2026-05-04 21:41:54] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:41:55] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:42:16] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:42:24] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:42:40] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:44:37] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:45:21] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 21:45:46] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:45:50] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:45:55] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:45:59] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:46:12] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:46:14] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:46:16] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:47:19] [INFO] [softwarefj.models.cliente] Cliente creado: Sandra Milena Campuzano (Cédula: 51577391, ID: 94942ee3)
+[2026-05-04 21:47:19] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-04 21:49:06] [INFO] [softwarefj.controllers.cliente] Cliente actualizado: Sandra Milena Campuzano (ID: 94942ee3)
+[2026-05-04 21:49:19] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:49:49] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 21:49:52] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:50:27] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:50:34] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 21:50:44] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:50:47] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:51:01] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 21:52:23] [INFO] [softwarefj.models.reserva] Reserva creada [db7edbdd]: Cliente=Sandra Milena Campuzano, Servicio=Sala Reunión A, Duración=1.0 hora(s)
+[2026-05-04 21:52:23] [INFO] [softwarefj.models.servicio] Costo calculado para sala 'Sala Reunión A': $59,500
+[2026-05-04 21:52:23] [INFO] [softwarefj.models.reserva] Reserva [db7edbdd]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 21:52:23] [INFO] [softwarefj.models.reserva] Reserva [db7edbdd] procesada exitosamente. Costo: $59,500
+[2026-05-04 21:52:23] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [db7edbdd]: ÉXITO
+[2026-05-04 21:52:23] [INFO] [softwarefj.models.servicio] Horario registrado en sala 'Sala Reunión A': 2026-05-04 30:00-50:00
+[2026-05-04 21:52:23] [INFO] [softwarefj.controllers.reserva] Reserva completada [db7edbdd]: Sandra Milena Campuzano → Sala Reunión A = $59,500
+[2026-05-04 21:56:18] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 21:56:18] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-04 21:56:18] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 21:57:26] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-04 21:57:26] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 21:57:26] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-04 21:57:26] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-04 21:57:27] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-04 21:57:27] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:57:27] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-04 21:57:27] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-04 21:57:35] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:57:36] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:57:37] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:57:44] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:57:54] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:57:55] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:57:58] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:58:45] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 21:59:22] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: logs
+[2026-05-04 21:59:27] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:59:31] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 21:59:34] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 21:59:36] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 21:59:42] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 22:00:27] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 22:00:34] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:00:36] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 22:01:17] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:01:59] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:01:59] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-04 22:01:59] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:02:42] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-04 22:02:42] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:02:42] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-04 22:02:42] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-04 22:02:43] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-04 22:02:44] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 22:02:44] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-04 22:02:44] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-04 22:03:07] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:03:08] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 22:03:15] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:03:38] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:03:38] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-04 22:03:38] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:10:52] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-04 22:10:52] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:10:52] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-04 22:10:52] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-04 22:10:53] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-04 22:10:53] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 22:10:53] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-04 22:10:53] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-04 22:11:07] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-04 22:11:53] [INFO] [softwarefj.models.asesor] Asesor creado: Juan Nicolas Gomez (Cédula: 23475290, ID: 8c0efa68)
+[2026-05-04 22:11:53] [INFO] [softwarefj.controllers.asesor] [FINALLY] Operación 'crear_asesor' finalizada
+[2026-05-04 22:12:13] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 22:12:24] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:12:33] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-04 22:12:36] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 22:12:38] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 22:12:39] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:12:41] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-04 22:12:42] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 22:13:29] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 22:13:31] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:17:38] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-04 22:18:20] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:18:20] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-04 22:18:20] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:21:36] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 1: Crear cliente válido
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.cliente] Cliente creado: Juan Carlos Pérez (Cédula: 12345678, ID: 3b6a1ea0)
+[2026-05-04 22:21:36] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 2: Crear cliente con email inválido
+[2026-05-04 22:21:36] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 3: Reservar sala disponible por 2 horas (costo base)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva creada [02e4e9ca]: Cliente=Juan Carlos Pérez, Servicio=Sala Reunión A, Duración=2 hora(s)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Costo calculado para sala 'Sala Reunión A': $100,000
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [02e4e9ca]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [02e4e9ca] procesada exitosamente. Costo: $100,000
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [02e4e9ca]: ÉXITO
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Horario registrado en sala 'Sala Reunión A': 2026-05-10 09:00-11:00
+[2026-05-04 22:21:36] [INFO] [softwarefj.controllers.reserva] Reserva completada [02e4e9ca]: Juan Carlos Pérez → Sala Reunión A = $100,000
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 4: Reservar sala ya ocupada (conflicto de horario)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.cliente] Cliente creado: Ana García (Cédula: 11223344, ID: 5b2d31b9)
+[2026-05-04 22:21:36] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva creada [25e73c0e]: Cliente=Ana García, Servicio=Sala Reunión A, Duración=1 hora(s)
+[2026-05-04 22:21:36] [WARNING] [softwarefj.controllers.reserva] Reserva fallida: Reserva
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 5: Alquilar 5 laptops por 3 días con IVA (sobrecarga)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva creada [121748e8]: Cliente=Juan Carlos Pérez, Servicio=Laptop, Duración=3 dia(s)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Costo calculado para equipo 'Laptop': 5 uds × $107,100 = $535,500
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [121748e8]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [121748e8] procesada exitosamente. Costo: $535,500
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [121748e8]: ÉXITO
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Stock actualizado 'Laptop': -5 → 95 disponibles
+[2026-05-04 22:21:36] [INFO] [softwarefj.controllers.reserva] Reserva completada [121748e8]: Juan Carlos Pérez → Laptop = $535,500
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 6: Alquilar más equipos que stock disponible
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva creada [3612fa34]: Cliente=Ana García, Servicio=Laptop, Duración=1 dia(s)
+[2026-05-04 22:21:36] [WARNING] [softwarefj.controllers.reserva] Reserva fallida: Reserva
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 7: Asesoría legal 1 hora con descuento 10% + IVA (sobrecarga completa)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva creada [0dd1ce7c]: Cliente=Ana García, Servicio=Asesoría Legal, Duración=1 hora(s)
+[2026-05-04 22:21:36] [DEBUG] [softwarefj.models.servicio] Recargo asesoría legal (+15%): +$12,852
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Costo calculado para asesoría 'Asesoría Legal': $98,532
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [0dd1ce7c]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [0dd1ce7c] procesada exitosamente. Costo: $98,532
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [0dd1ce7c]: ÉXITO
+[2026-05-04 22:21:36] [INFO] [softwarefj.controllers.reserva] Reserva completada [0dd1ce7c]: Ana García → Asesoría Legal = $98,532
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 8: Flujo completo de estados: Confirmada → En Curso → Completada
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [02e4e9ca]: Estado cambiado 'Confirmada' → 'En Curso'
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [02e4e9ca]: Estado cambiado 'En Curso' → 'Completada'
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 9: Cancelar reserva ya completada (transición inválida)
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Horario liberado en sala 'Sala Reunión A': 2026-05-10 09:00-11:00
+[2026-05-04 22:21:36] [INFO] [softwarefj.controllers.reserva] [FINALLY] Cancelación [02e4e9ca]: recurso_liberado=True
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 10: Buscar cliente inexistente
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 11: Crear reserva con objeto cliente inválido (encadenamiento)
+[2026-05-04 22:21:36] [WARNING] [softwarefj.controllers.reserva] Reserva fallida: N/A
+[2026-05-04 22:21:36] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 12: Reserva → Confirmar → Marcar No Asistió
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva creada [dbe48fa3]: Cliente=Ana García, Servicio=Sala Capacitación A, Duración=1 dia(s)
+[2026-05-04 22:21:36] [DEBUG] [softwarefj.models.servicio] Recargo por capacidad alta (+20%): +$70,000
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Costo calculado para sala 'Sala Capacitación A': $420,000
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [dbe48fa3]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [dbe48fa3] procesada exitosamente. Costo: $420,000
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [dbe48fa3]: ÉXITO
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Horario registrado en sala 'Sala Capacitación A': 2026-05-18 08:00-17:00
+[2026-05-04 22:21:36] [INFO] [softwarefj.controllers.reserva] Reserva completada [dbe48fa3]: Ana García → Sala Capacitación A = $420,000
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.reserva] Reserva [dbe48fa3]: Estado cambiado 'Confirmada' → 'No Asistió'
+[2026-05-04 22:21:36] [INFO] [softwarefj.models.servicio] Horario liberado en sala 'Sala Capacitación A': 2026-05-18 08:00-17:00
+[2026-05-04 22:21:43] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-04 22:21:43] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:21:43] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-04 22:21:43] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-04 22:21:44] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-04 22:21:44] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 22:21:44] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-04 22:21:44] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-04 22:21:50] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:22:01] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-04 22:22:29] [INFO] [softwarefj.models.asesor] Asesor creado: Juan Nicolas Ortiz (Cédula: 79986089, ID: cbf5784a)
+[2026-05-04 22:22:29] [INFO] [softwarefj.controllers.asesor] [FINALLY] Operación 'crear_asesor' finalizada
+[2026-05-04 22:22:34] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:22:54] [INFO] [softwarefj.models.servicio] Asesor 'Juan Nicolas Ortiz' asignado a asesoría 'Asesoría Legal'
+[2026-05-04 22:23:51] [INFO] [softwarefj.models.servicio] Asesoría creada: Generacion de contratos (Área: legal, Asesor: Sin asignar)
+[2026-05-04 22:23:51] [INFO] [softwarefj.models.catalogo] Asesoría agregada al catálogo: Generacion de contratos
+[2026-05-04 22:24:02] [INFO] [softwarefj.models.servicio] Asesor 'Juan Nicolas Ortiz' asignado a asesoría 'Generacion de contratos'
+[2026-05-04 22:24:07] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-04 22:24:10] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 22:24:35] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: logs
+[2026-05-04 22:24:36] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-04 22:24:55] [INFO] [softwarefj.controllers.asesor] Asesor actualizado: Juan Nicolas Ortiz P (ID: cbf5784a)
+[2026-05-04 22:25:05] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:25:11] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 22:26:43] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-04 22:27:49] [INFO] [softwarefj.models.cliente] Cliente creado: Juan pablo Murcia (Cédula: 51579214, ID: ecfab3bc)
+[2026-05-04 22:27:49] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-04 22:27:51] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:27:56] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 22:28:54] [INFO] [softwarefj.models.reserva] Reserva creada [0d5533a7]: Cliente=Juan pablo Murcia, Servicio=Asesoría Legal, Duración=2.0 hora(s)
+[2026-05-04 22:28:54] [DEBUG] [softwarefj.models.servicio] Recargo asesoría legal (+15%): +$28,560
+[2026-05-04 22:28:54] [INFO] [softwarefj.models.servicio] Costo calculado para asesoría 'Asesoría Legal': $218,960
+[2026-05-04 22:28:54] [INFO] [softwarefj.models.reserva] Reserva [0d5533a7]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-04 22:28:54] [INFO] [softwarefj.models.reserva] Reserva [0d5533a7] procesada exitosamente. Costo: $218,960
+[2026-05-04 22:28:54] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [0d5533a7]: ÉXITO
+[2026-05-04 22:28:54] [INFO] [softwarefj.controllers.reserva] Reserva completada [0d5533a7]: Juan pablo Murcia → Asesoría Legal = $218,960
+[2026-05-04 22:29:21] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-04 22:29:27] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-04 22:30:00] [INFO] [softwarefj.models.reserva] Reserva [0d5533a7]: Estado cambiado 'Confirmada' → 'En Curso'
+[2026-05-04 23:06:31] [INFO] [softwarefj.main] ============================================================
+[2026-05-04 23:06:31] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-04 23:06:31] [INFO] [softwarefj.main] ============================================================
+[2026-05-05 07:19:24] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-05 07:19:24] [INFO] [softwarefj.main] ============================================================
+[2026-05-05 07:19:24] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-05 07:19:24] [INFO] [softwarefj.main] ============================================================
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-05 07:19:25] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-05 07:19:25] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-05 07:19:25] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-05 07:19:25] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-05 07:19:36] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-05 07:19:37] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-05 07:19:44] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-05 07:19:45] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-05 07:19:47] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-05 07:19:57] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-05 07:20:07] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-05 07:20:24] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-05 07:20:58] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-05 07:21:28] [INFO] [softwarefj.models.asesor] Asesor creado: juan pabloM (Cédula: 5555555555, ID: 259064b5)
+[2026-05-05 07:21:28] [INFO] [softwarefj.controllers.asesor] [FINALLY] Operación 'crear_asesor' finalizada
+[2026-05-05 07:21:35] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-05 07:22:05] [INFO] [softwarefj.models.cliente] Cliente creado: Camila Gonzalez (Cédula: 77777777777, ID: 62dc4bb3)
+[2026-05-05 07:22:05] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-05 07:22:08] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-05 07:22:37] [INFO] [softwarefj.models.servicio] Asesor 'juan pabloM' asignado a asesoría 'Asesoría Legal'
+[2026-05-05 07:22:40] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-05 07:22:41] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-05 07:22:45] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-05 07:23:07] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-05 07:30:38] [INFO] [softwarefj.main] ============================================================
+[2026-05-05 07:30:38] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-05 07:30:38] [INFO] [softwarefj.main] ============================================================
+[2026-05-05 07:32:33] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-05 07:32:33] [INFO] [softwarefj.main] ============================================================
+[2026-05-05 07:32:33] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-05 07:32:33] [INFO] [softwarefj.main] ============================================================
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-05 07:32:34] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-05 07:32:34] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-05 07:32:34] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-05 07:32:34] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-05 07:32:37] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-05 07:32:38] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-05 07:32:40] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-05 07:32:41] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-05 07:33:03] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-05 07:33:23] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-05 07:33:58] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-05 07:34:37] [INFO] [softwarefj.models.cliente] Cliente creado: dfdf (Cédula: 11111111, ID: 499d1f60)
+[2026-05-05 07:34:37] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-05 07:34:40] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-05 07:34:41] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-05 07:35:09] [ERROR] [softwarefj.controllers.reserva] Error inesperado al crear reserva: [ERR_VALIDACION] El campo 'fecha de reserva' debe tener el formato AAAA-MM-DD (campo: fecha de reserva)
+[2026-05-05 07:35:28] [ERROR] [softwarefj.controllers.reserva] Error inesperado al crear reserva: [ERR_VALIDACION] El campo 'fecha de reserva' debe tener el formato AAAA-MM-DD (campo: fecha de reserva)
+[2026-05-05 07:35:51] [ERROR] [softwarefj.controllers.reserva] Error inesperado al crear reserva: [ERR_VALIDACION] El campo 'fecha de reserva' debe tener el formato AAAA-MM-DD (campo: fecha de reserva)
+[2026-05-05 07:36:02] [ERROR] [softwarefj.controllers.reserva] Error inesperado al crear reserva: [ERR_VALIDACION] El campo 'fecha de reserva' debe tener el formato AAAA-MM-DD (campo: fecha de reserva)
+[2026-05-05 07:36:11] [INFO] [softwarefj.models.reserva] Reserva creada [a2e81a31]: Cliente=dfdf, Servicio=Impresora, Duración=1.0 hora(s)
+[2026-05-05 07:36:11] [INFO] [softwarefj.models.servicio] Costo calculado para equipo 'Impresora': 1 uds × $1,875 = $1,875
+[2026-05-05 07:36:11] [INFO] [softwarefj.models.reserva] Reserva [a2e81a31]: Estado cambiado 'Pendiente' → 'Confirmada'
+[2026-05-05 07:36:11] [INFO] [softwarefj.models.reserva] Reserva [a2e81a31] procesada exitosamente. Costo: $1,875
+[2026-05-05 07:36:11] [INFO] [softwarefj.models.reserva] [FINALLY] Operación procesar reserva [a2e81a31]: ÉXITO
+[2026-05-05 07:36:11] [INFO] [softwarefj.models.servicio] Stock actualizado 'Impresora': -1 → 99 disponibles
+[2026-05-05 07:36:11] [INFO] [softwarefj.controllers.reserva] Reserva completada [a2e81a31]: dfdf → Impresora = $1,875
+[2026-05-05 07:36:34] [INFO] [softwarefj.main] ============================================================
+[2026-05-05 07:36:34] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-05 07:36:34] [INFO] [softwarefj.main] ============================================================
