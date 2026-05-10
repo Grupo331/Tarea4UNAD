@@ -1,3 +1,4 @@
+# Aporte realizado por: Alejandra Rojas.
 # =============================================================================
 # main.py — Punto de entrada del Sistema de Gestión Software FJ
 # =============================================================================
