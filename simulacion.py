@@ -1,6 +1,16 @@
 # =============================================================================
 # simulacion.py — 12 operaciones de simulación (válidas e inválidas)
 # =============================================================================
+"""
+Este módulo actúa como una suite de pruebas de integración y demostración funcional.
+
+Su propósito es validar el comportamiento del motor lógico del sistema (Backend)
+sin necesidad de interactuar con la interfaz gráfica. Permite verificar la 
+integridad de las reglas de negocio, la correcta propagación de excepciones 
+personalizadas, el cálculo polimórfico de tarifas y el flujo de estados de 
+las reservas, asegurando que el sistema sea robusto ante datos correctos y erróneos.
+"""
+# =============================================================================
 # Demuestra el funcionamiento completo del sistema sin interfaz gráfica:
 # - Creación de clientes y servicios
 # - Reservas exitosas y fallidas
@@ -26,34 +36,58 @@ from backend.exceptions.excepciones import (
     ReservaValidacionError
 )
 
-# Inicializar logging
+# Inicializar el sistema de logging para capturar la trazabilidad de la simulación
 configurar_logging()
 logger = obtener_logger("simulacion")
 
 
 def separador(titulo: str) -> None:
-    """Imprime un separador visual en consola."""
+    """
+    Genera un separador visual estandarizado en la consola.
+    
+    Args:
+        titulo (str): Texto que se mostrará centrado en el separador.
+    """
     print(f"\n{'='*60}")
     print(f"  {titulo}")
     print(f"{'='*60}")
 
 
 def operacion(numero: int, descripcion: str, tipo: str) -> None:
-    """Encabezado de cada operación."""
+    """
+    Imprime el encabezado de una prueba específica y lo registra en los logs.
+    
+    Args:
+        numero (int): Índice correlativo de la operación.
+        descripcion (str): Resumen de lo que se intenta probar.
+        tipo (str): Categoría de la prueba ('valida' o 'invalida').
+    """
     emoji = "✅" if tipo == "valida" else "❌"
     print(f"\n--- Operación {numero}: {emoji} {descripcion} ({tipo.upper()}) ---")
     logger.info(f"SIMULACIÓN - Operación {numero}: {descripcion}")
 
 
 def ejecutar_simulacion():
-    """Ejecuta las 12 operaciones de simulación."""
+    """
+    Orquesta la ejecución de las 12 pruebas lógicas definidas en el plan de implementación.
+    
+    La función inicializa los controladores necesarios y ejecuta secuencialmente 
+    casos de uso que cubren el CRUD de clientes, gestión de inventario, 
+    conflictos de disponibilidad y la máquina de estados de las reservas.
+    """
 
     # ─── Inicialización ──────────────────────────────────────────────
+    # Se instancian los controladores que gestionan la lógica de negocio en memoria.
     separador("INICIALIZACIÓN DEL SISTEMA")
+    
+    # El catálogo precarga los servicios definidos en la configuración
     catalogo = CatalogoServicios()
+    
+    # Inyección de dependencias en los controladores
     cliente_ctrl = ClienteController()
     servicio_ctrl = ServicioController(catalogo)
     reserva_ctrl = ReservaController()
+    
     print(f"Catálogo cargado: {servicio_ctrl.obtener_resumen()}")
 
     # ═══════════════════════════════════════════════════════════════════
@@ -62,6 +96,8 @@ def ejecutar_simulacion():
     # ═══════════════════════════════════════════════════════════════════
     operacion(1, "Crear cliente válido", "valida")
     try:
+        # Se intenta crear un cliente con todos los campos correctos.
+        # El controlador valida internamente mediante @property.setters.
         cliente1 = cliente_ctrl.crear_cliente(
             "Juan Carlos Pérez", "12345678", "3001234567", "juan@email.com"
         )
@@ -76,6 +112,8 @@ def ejecutar_simulacion():
     # ═══════════════════════════════════════════════════════════════════
     operacion(2, "Crear cliente con email inválido", "invalida")
     try:
+        # El sistema de validación debe detectar que el email no cumple con el Regex 
+        # y lanzar una excepción controlada.
         cliente_malo = cliente_ctrl.crear_cliente(
             "María López", "87654321", "3009876543", "email-invalido"
         )
@@ -83,6 +121,7 @@ def ejecutar_simulacion():
         print(f"  → Excepción capturada: {e}")
         print(f"  → Tipo: {type(e).__name__}, Código: {e.codigo}")
         if e.__cause__:
+            # Demuestra el uso de 'raise ... from' para rastrear el error original
             print(f"  → Causa original (encadenamiento): {e.__cause__}")
 
     # ═══════════════════════════════════════════════════════════════════
@@ -95,6 +134,7 @@ def ejecutar_simulacion():
         sala_reunion = salas[0]  # Sala Reunión A
         print(f"  → Servicio: {sala_reunion.obtener_descripcion()}")
 
+        # Uso de argumentos posicionales para la configuración básica de la reserva
         reserva1 = reserva_ctrl.crear_reserva(
             cliente1, sala_reunion, "2026-05-10", 2, "hora",
             hora_inicio="09:00", hora_fin="11:00"
@@ -122,6 +162,7 @@ def ejecutar_simulacion():
     except SalaNoDisponibleError as e:
         print(f"  → Excepción capturada: {e}")
         print(f"  → Sala: {e.sala}, Horario: {e.horario}")
+        # Se valida que no se haya creado una reserva fantasma
 
     # ═══════════════════════════════════════════════════════════════════
     # OPERACIÓN 5: Alquilar 5 laptops por 3 días con IVA ✅
@@ -133,7 +174,8 @@ def ejecutar_simulacion():
         laptop = equipos[0]  # Laptop
         print(f"  → Servicio: {laptop.obtener_descripcion()}")
         print(f"  → Stock antes: {laptop.stock_disponible}")
-
+        
+        # Se pasan argumentos de palabra clave (kwargs) para el cálculo de impuestos y stock
         reserva2 = reserva_ctrl.crear_reserva(
             cliente1, laptop, "2026-05-12", 3, "dia",
             impuesto=0.19, cantidad=5
@@ -150,6 +192,8 @@ def ejecutar_simulacion():
     # ═══════════════════════════════════════════════════════════════════
     operacion(6, "Alquilar más equipos que stock disponible", "invalida")
     try:
+        # Se solicita una cantidad astronómica (200) para forzar el error de 
+        # disponibilidad de inventario físico.
         reserva_sin_stock = reserva_ctrl.crear_reserva(
             cliente2, laptop, "2026-05-15", 1, "dia",
             cantidad=200  # Más que el stock disponible
@@ -169,6 +213,8 @@ def ejecutar_simulacion():
         asesoria_legal = asesorias[0]  # Asesoría Legal
         print(f"  → Servicio: {asesoria_legal.obtener_descripcion()}")
 
+        # Esta prueba combina lógica de impuestos, descuentos y un recargo 
+        # interno del 15% aplicado por la clase AsesoriaEspecializada.
         reserva3 = reserva_ctrl.crear_reserva(
             cliente2, asesoria_legal, "2026-05-14", 1, "hora",
             impuesto=0.19, descuento=0.10,
@@ -186,6 +232,7 @@ def ejecutar_simulacion():
     operacion(8, "Flujo completo de estados: Confirmada → En Curso → Completada", "valida")
     try:
         print(f"  → Estado actual: {reserva1.estado.value}")
+        
         # La reserva ya está CONFIRMADA por el proceso de creación
         reserva_ctrl.iniciar_reserva(reserva1.id)
         print(f"  → Después de iniciar: {reserva1.estado.value}")
@@ -200,6 +247,7 @@ def ejecutar_simulacion():
     # ═══════════════════════════════════════════════════════════════════
     operacion(9, "Cancelar reserva ya completada (transición inválida)", "invalida")
     try:
+        # Un estado 'COMPLETADA' es final; intentar cancelarla debe violar la máquina de estados.
         reserva_ctrl.cancelar_reserva(reserva1.id)
     except TransicionEstadoError as e:
         print(f"  → Excepción capturada: {e}")
@@ -211,6 +259,7 @@ def ejecutar_simulacion():
     # ═══════════════════════════════════════════════════════════════════
     operacion(10, "Buscar cliente inexistente", "invalida")
     try:
+        # Prueba de manejo de errores en operaciones de búsqueda por identificador único.
         cliente_fantasma = cliente_ctrl.buscar_por_cedula("99999999")
     except ClienteNoEncontradoError as e:
         print(f"  → Excepción capturada: {e}")
@@ -222,7 +271,7 @@ def ejecutar_simulacion():
     # ═══════════════════════════════════════════════════════════════════
     operacion(11, "Crear reserva con objeto cliente inválido (encadenamiento)", "invalida")
     try:
-        # Pasar un string en lugar de un objeto Cliente
+        # Se envía un tipo de dato erróneo para disparar el encadenamiento de excepciones.
         reserva_mala = reserva_ctrl.crear_reserva(
             "no_soy_un_cliente", sala_reunion, "2026-05-20", 1, "hora",
             hora_inicio="15:00", hora_fin="16:00"
@@ -248,7 +297,9 @@ def ejecutar_simulacion():
             hora_inicio="08:00", hora_fin="17:00"
         )
         print(f"  → Estado inicial: {reserva4.estado.value}")
+        
         # Ya está confirmada por el proceso
+        # Esta operación debe liberar los recursos bloqueados.
         reserva_ctrl.marcar_no_asistio(reserva4.id)
         print(f"  → Estado final: {reserva4.estado.value}")
     except Exception as e:
@@ -257,6 +308,7 @@ def ejecutar_simulacion():
     # ═══════════════════════════════════════════════════════════════════
     # RESUMEN FINAL
     # ═══════════════════════════════════════════════════════════════════
+    # Muestra un reporte consolidado del estado de la memoria tras las operaciones.
     separador("RESUMEN FINAL DE LA SIMULACIÓN")
 
     print(f"\n📊 Clientes registrados: {cliente_ctrl.total_clientes}")

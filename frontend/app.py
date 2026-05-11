@@ -1,14 +1,30 @@
 # =============================================================================
+# ARCHIVO: app.py
 # app.py — Dashboard principal de Software FJ
+# PROPÓSITO: Punto de control central de la Interfaz Gráfica de Usuario (GUI).
+# DESCRIPCIÓN: Este archivo define la clase DashboardApp, la cual orquesta la 
+#              ventana principal, gestiona la navegación entre módulos (vistas) 
+#              e inicializa los controladores del backend. Implementa un diseño 
+#              de área central dinámica donde las vistas se cargan y destruyen 
+#              según la interacción del usuario.
 # =============================================================================
-# Ventana principal con sidebar de navegación y área central dinámica.
-# Orquesta los controladores y las vistas de cada módulo.
-# =============================================================================
+"""
+Este archivo implementa el 'Main Frame' o 'App Shell' del sistema.
+Utiliza un patrón de diseño orientado a objetos para encapsular la ventana de Tkinter,
+gestionando de manera centralizada los controladores de datos y permitiendo que 
+la aplicación sea escalable y fácil de mantener.
+"""
 
+# Importaciones de biblioteca estándar
 import tkinter as tk
 from tkinter import ttk
 from datetime import datetime
+
+# Importación de configuración y estilos globales
+# Estas constantes definen la apariencia (colores, fuentes) y dimensiones de la app.
 from config import COLORES, FUENTES, TITULO_APP, VENTANA_ANCHO, VENTANA_ALTO, SIDEBAR_ANCHO
+
+# Importación de componentes visuales y vistas
 from frontend.estilos import configurar_estilos
 from frontend.componentes.sidebar import Sidebar
 from frontend.componentes.widgets import TarjetaMetrica
@@ -17,6 +33,8 @@ from frontend.vistas.servicio_vista import ServicioVista
 from frontend.vistas.reserva_vista import ReservaVista
 from frontend.vistas.asesor_vista import AsesorVista
 from frontend.vistas.log_vista import LogVista
+
+# Importación de la capa de Controladores (Backend)
 from backend.controllers.cliente_controller import ClienteController
 from backend.controllers.servicio_controller import ServicioController
 from backend.controllers.reserva_controller import ReservaController
@@ -24,6 +42,8 @@ from backend.controllers.asesor_controller import AsesorController
 from backend.models.catalogo import CatalogoServicios
 from backend.utils.logger_config import obtener_logger
 
+# Inicialización del logger para rastrear eventos de la interfaz
+# Permite capturar errores de renderizado y trazas de navegación.
 logger = obtener_logger("frontend.app")
 
 
@@ -44,65 +64,82 @@ class DashboardApp:
     """
 
     def __init__(self):
-        """Inicializa la aplicación completa."""
-        # Crear ventana raíz
+        """
+        Inicializa la aplicación completa configurando la ventana principal,
+        los estilos corporativos y el estado inicial de los controladores.
+        """
+        # 1. Configuración de la ventana raíz (Root Window)
+        # self._root es la instancia principal de la ventana Tkinter.
         self._root = tk.Tk()
-        self._root.title(TITULO_APP)
-        self._root.geometry(f"{VENTANA_ANCHO}x{VENTANA_ALTO}")
-        self._root.minsize(1024, 600)
+        self._root.title(TITULO_APP) # Título definido en config.py
+        self._root.geometry(f"{VENTANA_ANCHO}x{VENTANA_ALTO}") # Dimensión inicial
+        self._root.minsize(1024, 600) # Evita que la UI se rompa en pantallas muy pequeñas
         self._root.configure(bg=COLORES["fondo"])
 
-        # Centrar ventana
+        # 2. Lógica de posicionamiento: Se calcula el centro geométrico del monitor.
         self._centrar_ventana()
 
-        # Configurar estilos
+        # 3. Aplicar tema y estilos: Carga la paleta de colores corporativa en ttk.
         configurar_estilos(self._root)
 
-        # Inicializar controladores (backend)
+        # 4. Inyección de Dependencias: Inicializar la lógica de negocio (Backend)
+        # Se instancian los controladores para que vivan durante todo el ciclo de la app.
         self._catalogo = CatalogoServicios()
-        self._cliente_ctrl = ClienteController()
-        self._servicio_ctrl = ServicioController(self._catalogo)
-        self._reserva_ctrl = ReservaController()
-        self._asesor_ctrl = AsesorController()
+        self._cliente_ctrl = ClienteController() # Maneja CRUD de clientes
+        self._servicio_ctrl = ServicioController(self._catalogo) # Maneja inventario de servicios
+        self._reserva_ctrl = ReservaController() # Maneja lógica de estados de reserva
+        self._asesor_ctrl = AsesorController() # Maneja personal especializado
 
-        # Variable para la vista actual
-        self._vista_actual = None
+        # 5. Estado de navegación: Mantiene referencia a la vista activa para poder destruirla
+        self._vista_actual = None # Almacenará el frame de la pestaña activa (Clientes, Reservas, etc.)
 
-        # Crear layout
+        # 6. Construcción de la UI persistente
         self._crear_layout()
 
-        # Mostrar vista de inicio por defecto
+        # 7. Carga inicial: Inicia el dashboard de bienvenida.
         self._cambiar_vista("inicio")
 
         logger.info("Dashboard inicializado correctamente")
 
     def _centrar_ventana(self) -> None:
-        """Centra la ventana en la pantalla."""
+        """
+        Calcula las coordenadas necesarias para que la ventana aparezca 
+        exactamente en el centro de la resolución actual del monitor.
+        """
         self._root.update_idletasks()
+        # winfo_screenwidth(): Obtiene el ancho total del monitor del usuario.
         x = (self._root.winfo_screenwidth() - VENTANA_ANCHO) // 2
+        # winfo_screenheight(): Obtiene el alto total del monitor del usuario.
         y = (self._root.winfo_screenheight() - VENTANA_ALTO) // 2
         self._root.geometry(f"{VENTANA_ANCHO}x{VENTANA_ALTO}+{x}+{y}")
 
     def _crear_layout(self) -> None:
-        """Crea el layout principal: sidebar + área central + barra de estado."""
+        """
+        Define la estructura espacial de la aplicación utilizando el gestor de geometría 'pack'.
+        Divide la pantalla en: Panel Lateral (Sidebar), Área de Trabajo (Central) y Barra de Estado.
+        """
         # Frame contenedor principal
+        # Actúa como el lienzo base sobre el que se divide el Sidebar y el Contenido.
         frame_principal = tk.Frame(self._root, bg=COLORES["fondo"])
         frame_principal.pack(fill="both", expand=True)
 
         # ─── Sidebar ────────────────────────────────────────────────
+        # self._sidebar: Panel de navegación izquierdo. Se pasa self._cambiar_vista como callback.
         self._sidebar = Sidebar(
             frame_principal,
             callback=self._cambiar_vista
         )
         self._sidebar.pack(side="left", fill="y", ipadx=10)
         self._sidebar.configure(width=SIDEBAR_ANCHO)
-        self._sidebar.pack_propagate(False)
+        self._sidebar.pack_propagate(False) # Mantiene el ancho fijo definido en config
 
         # ─── Área central ───────────────────────────────────────────
+        # self._frame_central: Zona donde se cargan las vistas (pestañas) dinámicamente.
         self._frame_central = tk.Frame(frame_principal, bg=COLORES["fondo"])
         self._frame_central.pack(side="right", fill="both", expand=True)
 
         # ─── Barra de estado inferior ───────────────────────────────
+        # barra_estado: Muestra información de versión y un reloj en tiempo real.
         barra_estado = tk.Frame(self._root, bg=COLORES["primario"], height=28)
         barra_estado.pack(fill="x", side="bottom")
         barra_estado.pack_propagate(False)
@@ -116,6 +153,7 @@ class DashboardApp:
             anchor="w"
         ).pack(side="left", padx=10)
 
+        # self._label_reloj: Etiqueta dinámica para la hora.
         self._label_reloj = tk.Label(
             barra_estado,
             text="",
@@ -128,9 +166,15 @@ class DashboardApp:
         self._actualizar_reloj()
 
     def _actualizar_reloj(self) -> None:
-        """Actualiza el reloj de la barra de estado cada segundo."""
+        """
+        Actualiza la etiqueta de tiempo en la barra de estado.
+        Utiliza el método .after() de Tkinter para crear un bucle de refresco 
+        sin bloquear el hilo principal de la interfaz.
+        """
+        # Captura la hora actual del sistema operativo.
         ahora = datetime.now().strftime("%Y-%m-%d  %H:%M:%S")
         self._label_reloj.configure(text=ahora)
+        # Se programa la ejecución de este mismo método en 1000ms (recursividad controlada).
         self._root.after(1000, self._actualizar_reloj)
 
     def _cambiar_vista(self, nombre_modulo: str) -> None:
@@ -143,12 +187,14 @@ class DashboardApp:
             nombre_modulo: Nombre del módulo ("inicio", "clientes", etc.)
         """
         try:
-            # Destruir vista actual
+            # LÓGICA DE LIMPIEZA: Elimina la vista anterior de la memoria y del GUI 
+            # para evitar fugas de memoria y solapamientos visuales.
             if self._vista_actual is not None:
                 self._vista_actual.destroy()
                 self._vista_actual = None
 
-            # Crear nueva vista según módulo
+            # LÓGICA DE ENRUTAMIENTO (Routing): Instancia la vista correspondiente pasando los controladores.
+            # Cada vista recibe el frame central como padre y el controlador respectivo como fuente de datos.
             if nombre_modulo == "inicio":
                 self._vista_actual = self._crear_vista_inicio()
             elif nombre_modulo == "clientes":
@@ -197,7 +243,12 @@ class DashboardApp:
             ).pack(expand=True)
 
     def _crear_vista_inicio(self) -> tk.Frame:
-        """Crea la vista de inicio con tarjetas de métricas y bienvenida."""
+        """
+        Construye la pantalla de bienvenida (Dashboard). 
+        Recopila datos estadísticos de todos los controladores para mostrar 
+        un resumen ejecutivo del estado del sistema.
+        """
+        # Frame contenedor local para la vista de inicio
         frame = tk.Frame(self._frame_central, bg=COLORES["fondo"])
 
         # ─── Bienvenida ─────────────────────────────────────────────
@@ -227,13 +278,14 @@ class DashboardApp:
         frame_tarjetas = tk.Frame(frame, bg=COLORES["fondo"])
         frame_tarjetas.pack(fill="x", padx=30, pady=(0, 20))
 
-        # Obtener métricas
+        # Recopilación de métricas: Se consultan los controladores para obtener datos reales.
         total_clientes = self._cliente_ctrl.total_clientes
         resumen_servicios = self._servicio_ctrl.obtener_resumen()
         resumen_reservas = self._reserva_ctrl.obtener_resumen()
-
         total_asesores = self._asesor_ctrl.total_asesores
 
+        # Configuración de los widgets de métricas (Cards):
+        # Estructura: (Nombre, Valor, Icono, Color)
         tarjetas_config = [
             ("Clientes Registrados", str(total_clientes), "👥", COLORES["primario"]),
             ("Servicios Disponibles", str(resumen_servicios["total_servicios"]), "🔧", COLORES["acento"]),
@@ -242,6 +294,8 @@ class DashboardApp:
             ("Ingresos", f"${resumen_reservas.get('ingresos_totales', 0):,.0f}", "💰", COLORES["advertencia"]),
         ]
 
+        # Renderizado de Tarjetas: Se utiliza .grid() para permitir que las tarjetas se
+        # distribuyan equitativamente en el ancho disponible.
         for i, (titulo, valor, icono, color) in enumerate(tarjetas_config):
             tarjeta = TarjetaMetrica(
                 frame_tarjetas, titulo=titulo, valor=valor,
@@ -259,6 +313,7 @@ class DashboardApp:
         )
         frame_accesos.pack(fill="x", padx=30, pady=(0, 20))
 
+        # Lista de mapeo entre etiquetas de botón y nombres de módulo internos.
         accesos = [
             ("👥 Gestionar Clientes", "clientes"),
             ("🔧 Ver Servicios", "servicios"),
@@ -271,6 +326,7 @@ class DashboardApp:
         frame_btns.pack(fill="x")
 
         for texto, modulo in accesos:
+            # Se usa un lambda con argumento predeterminado (m=modulo) para capturar el valor actual del bucle.
             btn = ttk.Button(
                 frame_btns, text=texto, style="Accent.TButton",
                 command=lambda m=modulo: self._navegar_desde_inicio(m)
@@ -281,6 +337,7 @@ class DashboardApp:
         frame_info = tk.Frame(frame, bg=COLORES["fondo"])
         frame_info.pack(fill="x", padx=30, pady=(0, 20))
 
+        # Texto consolidado de inventario.
         info_texto = (
             f"📊 Resumen: {resumen_servicios['total_salas']} salas | "
             f"{resumen_servicios['total_equipos']} tipos de equipos | "
@@ -295,11 +352,18 @@ class DashboardApp:
         return frame
 
     def _navegar_desde_inicio(self, modulo: str) -> None:
-        """Navega a un módulo actualizando también el sidebar."""
+        """
+        Permite la navegación desde los botones del cuerpo de la página de inicio, 
+        asegurando que el estado visual del Sidebar se mantenga sincronizado.
+        """
+        # Notifica al sidebar que debe marcar como activo el nuevo botón.
         self._sidebar._actualizar_boton_activo(modulo)
         self._cambiar_vista(modulo)
 
     def ejecutar(self) -> None:
-        """Inicia el bucle principal de la aplicación."""
+        """
+        Arranca el ciclo de eventos de Tkinter (mainloop). 
+        Este método es bloqueante y mantiene la ventana abierta.
+        """
         logger.info("Iniciando aplicación Software FJ")
         self._root.mainloop()

@@ -1,13 +1,15 @@
 # =============================================================================
+# ARCHIVO: asesor_controller.py
 # asesor_controller.py — Controlador de operaciones sobre Asesores
 # =============================================================================
 """
-Módulo controlador para la gestión de Asesores.
+Módulo de lógica de negocio para la gestión de Asesores del Sistema Software FJ.
 
-Este módulo define la clase AsesorController, la cual es responsable de la 
-gestión del ciclo de vida (CRUD) de los objetos Asesor en memoria. Implementa 
-lógica de negocio como la validación de unicidad (por cédula), múltiples 
-criterios de búsqueda y el manejo de excepciones personalizadas.
+Este controlador actúa como intermediario entre la interfaz de usuario y los 
+modelos de datos. Implementa el ciclo de vida completo (CRUD) de los asesores 
+en un repositorio en memoria, asegurando la integridad de los datos mediante 
+validaciones de unicidad y el manejo robusto de excepciones para prevenir 
+registros inconsistentes.
 """
 # =============================================================================
 
@@ -17,6 +19,7 @@ from backend.exceptions.excepciones import (
 )
 from backend.utils.logger_config import obtener_logger
 
+# Instancia global del logger para rastrear eventos y errores en este controlador
 logger = obtener_logger("controllers.asesor")
 
 
@@ -29,6 +32,12 @@ class AsesorNoEncontradoError(EntidadNoEncontradaError):
     """
 
     def __init__(self, identificador: str = ""):
+        """
+        Inicializa la excepción con un mensaje personalizado y el ID no hallado.
+        
+        Args:
+            identificador (str): El ID o cédula que disparó la búsqueda fallida.
+        """
         super().__init__("Asesor no encontrado", identificador)
         self.codigo = "ERR_ASESOR_NO_ENCONTRADO"
 
@@ -47,6 +56,7 @@ class AsesorController:
 
     def __init__(self):
         """Inicializa el controlador con una lista vacía de asesores."""
+        # _asesores: Lista privada que sirve como almacén volátil de objetos Asesor
         self._asesores: list = []
 
     @property
@@ -58,6 +68,7 @@ class AsesorController:
             list[Asesor]: Copia de la lista interna de asesores para evitar
             modificaciones no autorizadas desde el exterior.
         """
+        # Se utiliza .copy() para proteger el encapsulamiento de la lista interna
         return self._asesores.copy()
 
     @property
@@ -90,29 +101,36 @@ class AsesorController:
             OperacionError: Si la cédula ya está registrada en el sistema.
             ValidacionError: Si los datos provistos no cumplen las reglas del modelo Asesor.
         """
+        # Identificador de la operación para fines de registro en logs
         operacion = "crear_asesor"
         try:
-            # Verificar que la cédula no esté duplicada
+            # LÓGICA DE UNICIDAD: Se eliminan espacios y se compara contra cada registro existente
             cedula_limpia = cedula.strip()
             for a in self._asesores:
                 if a.cedula == cedula_limpia:
+                    # Si hay coincidencia, se interrumpe el flujo con una excepción
                     raise OperacionError(
                         f"Ya existe un asesor con cédula {cedula_limpia}",
                         operacion
                     )
 
+            # Se instancia el modelo (el cual lanza ValidacionError si los campos son incorrectos)
             asesor = Asesor(nombre, cedula, especialidad)
+            # Se persiste el objeto en la lista en memoria
             self._asesores.append(asesor)
             return asesor
 
         except (ValidacionError, OperacionError):
+            # Se re-lanzan excepciones de negocio para que sean manejadas por la UI
             raise
         except Exception as e:
+            # Captura y registro de errores técnicos no previstos
             logger.error(f"Error inesperado al crear asesor: {e}")
             raise OperacionError(
                 f"Error inesperado: {e}", operacion
             ) from e
         finally:
+            # Registro mandatorio de la finalización del intento de operación
             logger.info(f"[FINALLY] Operación '{operacion}' finalizada")
 
     def buscar_por_id(self, asesor_id: str) -> Asesor:
@@ -128,9 +146,11 @@ class AsesorController:
         Raises:
             AsesorNoEncontradoError: Si no existe ningún asesor con el ID provisto.
         """
+        # Búsqueda secuencial basada en el UUID del objeto
         for asesor in self._asesores:
             if asesor.id == asesor_id:
                 return asesor
+        # Si el bucle termina sin retorno, el recurso no existe
         raise AsesorNoEncontradoError(asesor_id)
 
     def buscar_por_cedula(self, cedula: str) -> Asesor:
@@ -146,10 +166,12 @@ class AsesorController:
         Raises:
             AsesorNoEncontradoError: Si la cédula no está registrada.
         """
+        # Normalización de la cadena de búsqueda
         cedula = cedula.strip()
         for asesor in self._asesores:
             if asesor.cedula == cedula:
                 return asesor
+        # Excepción específica para fallos en búsqueda por documento
         raise AsesorNoEncontradoError(cedula)
 
     def buscar_por_nombre(self, nombre: str) -> list:
@@ -162,7 +184,9 @@ class AsesorController:
         Returns:
             list[Asesor]: Lista de asesores cuyos nombres coincidan total o parcialmente.
         """
+        # Normalización a minúsculas para búsqueda flexible
         nombre_lower = nombre.lower()
+        # Filtrado mediante comprensión de listas
         return [a for a in self._asesores if nombre_lower in a.nombre.lower()]
 
     def buscar_por_especialidad(self, especialidad: str) -> list:
@@ -175,6 +199,7 @@ class AsesorController:
         Returns:
             list[Asesor]: Lista de asesores que pertenecen a la especialidad indicada.
         """
+        # Filtrado insensible a capitalización
         esp_lower = especialidad.lower()
         return [a for a in self._asesores if a.especialidad == esp_lower]
 
@@ -194,17 +219,21 @@ class AsesorController:
             AsesorNoEncontradoError: Si el asesor especificado no existe.
             ValidacionError: Si los nuevos valores no pasan las reglas de validación.
         """
+        # Se garantiza la existencia del registro antes de intentar modificarlo
         asesor = self.buscar_por_id(asesor_id)
 
         try:
+            # LÓGICA DE ACTUALIZACIÓN: Se validan y asignan campos opcionales desde kwargs
             if "nombre" in kwargs and kwargs["nombre"]:
                 asesor.nombre = kwargs["nombre"]
             if "especialidad" in kwargs:
                 asesor.especialidad = kwargs["especialidad"]
             logger.info(f"Asesor actualizado: {asesor.nombre} (ID: {asesor_id})")
         except ValidacionError:
+            # Propagación de fallos detectados por el modelo (setters)
             raise
         except Exception as e:
+            # Encadenamiento de excepción para errores de asignación inesperados
             raise ValidacionError(
                 f"Error al actualizar asesor: {e}", ""
             ) from e
@@ -224,11 +253,14 @@ class AsesorController:
         Raises:
             AsesorNoEncontradoError: Si el asesor especificado no existe.
         """
+        # Se utiliza enumerate para obtener el índice y realizar un pop eficiente
         for i, asesor in enumerate(self._asesores):
             if asesor.id == asesor_id:
+                # Remoción física de la lista
                 eliminado = self._asesores.pop(i)
                 logger.info(f"Asesor eliminado: {eliminado.nombre} (ID: {asesor_id})")
                 return eliminado
+        # Error si el ID no corresponde a ningún elemento de la colección
         raise AsesorNoEncontradoError(asesor_id)
 
     def obtener_nombres_asesores(self) -> list:
@@ -240,6 +272,7 @@ class AsesorController:
         Returns:
             list[str]: Lista de cadenas en formato "Nombre (Cédula)".
         """
+        # Formateo visual para facilitar la selección en ComboBoxes de la UI
         return [f"{a.nombre} ({a.cedula})" for a in self._asesores]
 
     def obtener_mapa_asesores(self) -> dict:
@@ -254,6 +287,8 @@ class AsesorController:
             dict[str, Asesor]: Mapeo donde la clave es "Nombre (Cédula)" 
             y el valor es la instancia Asesor.
         """
+        # Se genera un diccionario de búsqueda para recuperar el objeto 
+        # original a partir de la selección de texto del usuario.
         return {
             f"{a.nombre} ({a.cedula})": a for a in self._asesores
         }
