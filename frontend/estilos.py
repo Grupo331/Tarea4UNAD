@@ -151,6 +151,32 @@ def configurar_estilos(root: tk.Tk) -> None:
         background=[("active", "#1b5e20")]
     )
 
+    estilo.configure(
+        "Warning.TButton",
+        font=FUENTES["boton"],
+        foreground="white",
+        background=COLORES.get("advertencia", "#f57f17"),
+        borderwidth=0,
+        padding=(20, 10)
+    )
+    estilo.map(
+        "Warning.TButton",
+        background=[("active", "#e65100")]
+    )
+
+    estilo.configure(
+        "Secondary.TButton",
+        font=FUENTES["boton"],
+        foreground="white",
+        background="#757575",
+        borderwidth=0,
+        padding=(20, 10)
+    )
+    estilo.map(
+        "Secondary.TButton",
+        background=[("active", "#616161")]
+    )
+
     # ─── Entries ─────────────────────────────────────────────────────
     estilo.configure(
         "Custom.TEntry",

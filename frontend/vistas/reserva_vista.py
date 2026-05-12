@@ -143,12 +143,12 @@ class ReservaVista(tk.Frame):
         ).pack(side="left", padx=2)
 
         ttk.Button(
-            frame_estados, text="🚫 No Asistió",
+            frame_estados, text="🚫 No Asistió", style="Secondary.TButton",
             command=lambda: self._cambiar_estado("no_asistio")
         ).pack(side="left", padx=2)
 
         ttk.Button(
-            frame_estados, text="🔄",
+            frame_estados, text="🔄 Actualizar", style="Primary.TButton",
             command=self._actualizar_tabla
         ).pack(side="right")
 

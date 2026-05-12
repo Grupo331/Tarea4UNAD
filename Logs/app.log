@@ -501,3 +501,101 @@
 [2026-05-11 07:19:12] [INFO] [softwarefj.main] ============================================================
 [2026-05-11 07:19:12] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
 [2026-05-11 07:19:12] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:25:43] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-11 19:25:43] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:25:43] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-11 19:25:43] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-11 19:25:44] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-11 19:25:45] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-11 19:25:45] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-11 19:25:45] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-11 19:26:38] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: logs
+[2026-05-11 19:26:39] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-11 19:30:14] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:30:14] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-11 19:30:14] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:31:52] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-11 19:31:52] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:31:52] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-11 19:31:52] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-11 19:31:52] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-11 19:31:53] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-11 19:31:53] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-11 19:31:53] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-11 19:31:56] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-11 19:32:02] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-11 19:33:16] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-11 19:33:36] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:33:36] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-11 19:33:36] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:34:54] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-11 19:34:54] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:34:54] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-11 19:34:54] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-11 19:34:55] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-11 19:34:55] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-11 19:34:55] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-11 19:34:55] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-11 19:34:59] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-11 19:35:02] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-11 19:35:08] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-11 19:35:09] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-11 19:35:13] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-11 19:36:16] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:36:16] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-11 19:36:16] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:36:37] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-11 19:36:37] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:36:37] [INFO] [softwarefj.main] INICIO DE APLICACIÓN — Software FJ v1.0.0
+[2026-05-11 19:36:37] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-11 19:36:38] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-11 19:36:39] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-11 19:36:39] [INFO] [softwarefj.frontend.app] Dashboard inicializado correctamente
+[2026-05-11 19:36:39] [INFO] [softwarefj.frontend.app] Iniciando aplicación Software FJ
+[2026-05-11 19:36:42] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-11 19:36:44] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-11 19:36:45] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: asesores
+[2026-05-11 19:36:46] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: reservas
+[2026-05-11 19:36:48] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: logs
+[2026-05-11 19:36:49] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: inicio
+[2026-05-11 19:36:51] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: clientes
+[2026-05-11 19:36:53] [DEBUG] [softwarefj.frontend.app] Vista cambiada a: servicios
+[2026-05-11 19:37:10] [INFO] [softwarefj.main] ============================================================
+[2026-05-11 19:37:10] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
+[2026-05-11 19:37:10] [INFO] [softwarefj.main] ============================================================

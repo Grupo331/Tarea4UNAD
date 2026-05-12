@@ -208,7 +208,7 @@ class ServicioVista(tk.Frame):
         ).pack(side="left", padx=(0, 5))
 
         ttk.Button(
-            frame_btn, text="🚫 Remover Asesor",
+            frame_btn, text="🚫 Remover Asesor", style="Secondary.TButton",
             command=self._remover_asesor
         ).pack(side="left", padx=(0, 5))
 

@@ -74,7 +74,7 @@ class AsesorVista(tk.Frame):
         ).pack(side="left", padx=5)
 
         ttk.Button(
-            frame_acciones, text="🔄 Actualizar",
+            frame_acciones, text="🔄 Actualizar", style="Primary.TButton",
             command=self._actualizar_tabla
         ).pack(side="right")
 
