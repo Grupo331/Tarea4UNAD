@@ -1,4 +1,3 @@
-# Aporte realizado por: Alejandra Rojas 
 # =============================================================================
 # main.py — Punto de entrada del Sistema de Gestión Software FJ
 # =============================================================================
@@ -8,6 +7,8 @@ Módulo principal del Sistema de Gestión Software FJ.
 Este script actúa como el punto de entrada de la aplicación. Su responsabilidad
 principal es configurar el entorno inicial (como el sistema de logging) y
 lanzar la interfaz de usuario principal (DashboardApp).
+
+Autores: Alejandra Rojas y Leonardo Hernandez
 """
 # =============================================================================
 

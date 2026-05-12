@@ -1,7 +1,12 @@
 # =============================================================================
 # cliente_vista.py — Vista del módulo de Clientes
 # =============================================================================
+"""
+Módulo de la interfaz gráfica para la gestión de clientes.
 
+Proporciona la vista principal (CRUD) donde el usuario puede listar,
+crear, editar, buscar y eliminar registros de clientes en el sistema.
+"""
 import tkinter as tk
 from tkinter import ttk, messagebox
 from config import COLORES, FUENTES
@@ -111,7 +116,11 @@ class ClienteVista(tk.Frame):
         )
 
     def _abrir_formulario_crear(self) -> None:
-        """Abre el formulario para crear un nuevo cliente."""
+        """Abre el formulario para crear un nuevo cliente.
+        
+        Instancia un FormularioDialog con los campos requeridos y asigna
+        el callback correspondiente para guardar los datos.
+        """
         FormularioDialog(
             self.winfo_toplevel(),
             "Nuevo Cliente",
@@ -120,7 +129,16 @@ class ClienteVista(tk.Frame):
         )
 
     def _guardar_nuevo_cliente(self, datos: dict) -> None:
-        """Callback del formulario para crear cliente."""
+        """Callback del formulario para crear cliente.
+        
+        Args:
+            datos: Diccionario con las llaves 'nombre', 'cedula', 
+                   'telefono' y 'email' capturadas desde el UI.
+                   
+        Raises:
+            Muestra mensajes de error en la UI si falla la validación 
+            o si ocurre un error en la operación de negocio.
+        """
         try:
             self._controller.crear_cliente(
                 datos["nombre"], datos["cedula"],
@@ -164,7 +182,12 @@ class ClienteVista(tk.Frame):
             messagebox.showerror("Error", str(e))
 
     def _guardar_edicion(self, cliente_id: str, datos: dict) -> None:
-        """Callback del formulario para editar cliente."""
+        """Callback del formulario para editar cliente.
+        
+        Args:
+            cliente_id: El identificador único del cliente a editar.
+            datos: Diccionario con los campos actualizados.
+        """
         try:
             self._controller.actualizar_cliente(cliente_id, **datos)
             self._actualizar_tabla()

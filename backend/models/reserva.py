@@ -1,9 +1,12 @@
 # =============================================================================
 # reserva.py — Modelo de Reserva con máquina de estados
 # =============================================================================
-# Integra Cliente + Servicio con control de transiciones de estado,
-# cálculo de costos polimórfico y registro de eventos.
-# =============================================================================
+"""
+Modelo de Reserva y máquina de estados.
+
+Integra Cliente + Servicio con control de transiciones de estado,
+cálculo de costos polimórfico y registro de eventos.
+"""
 
 from enum import Enum
 from datetime import datetime

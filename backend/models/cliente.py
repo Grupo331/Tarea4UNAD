@@ -1,8 +1,13 @@
 # =============================================================================
 # cliente.py — Modelo de Cliente con encapsulación y validación
 # =============================================================================
-# Implementa la clase Cliente con properties que validan datos en cada setter,
-# garantizando que un cliente siempre tenga datos consistentes.
+"""
+Módulo que define el modelo de negocio Cliente.
+
+Implementa la clase Cliente con properties que validan datos en cada setter,
+garantizando que un cliente siempre tenga datos consistentes a lo largo 
+del ciclo de vida de la aplicación.
+"""
 # =============================================================================
 
 from backend.models.base import EntidadBase

@@ -1,8 +1,12 @@
 # =============================================================================
 # logger_config.py — Configuración del sistema de logging de Software FJ
 # =============================================================================
-# Usa la librería estándar logging con RotatingFileHandler para archivos
-# y StreamHandler para consola durante desarrollo.
+"""
+Módulo para la configuración del sistema de logging.
+
+Usa la librería estándar logging con RotatingFileHandler para archivos
+y StreamHandler para consola durante el desarrollo.
+"""
 # =============================================================================
 
 import os

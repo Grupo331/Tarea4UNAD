@@ -599,3 +599,25 @@
 [2026-05-11 19:37:10] [INFO] [softwarefj.main] ============================================================
 [2026-05-11 19:37:10] [INFO] [softwarefj.main] FIN DE APLICACIÓN — Software FJ
 [2026-05-11 19:37:10] [INFO] [softwarefj.main] ============================================================
+[2026-05-12 03:39:34] [INFO] [softwarefj] Sistema de logging inicializado correctamente
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Sala creada: Sala Reunión A (Tipo: reunión, Capacidad: 10)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Sala creada: Sala Capacitación A (Tipo: capacitación, Capacidad: 25)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Sala creada: Sala Coworking A (Tipo: coworking, Capacidad: 15)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Equipo creado: Laptop (Tipo: laptop, Stock: 100)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Equipo creado: Proyector (Tipo: proyector, Stock: 100)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Equipo creado: Impresora (Tipo: impresora, Stock: 100)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Legal (Área: legal, Asesor: Sin asignar)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Contable (Área: contable, Asesor: Sin asignar)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.servicio] Asesoría creada: Asesoría Técnica (Área: técnica, Asesor: Sin asignar)
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.catalogo] Catálogo inicializado: 3 salas, 3 equipos, 3 asesorías
+[2026-05-12 03:39:34] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 1: Crear cliente válido
+[2026-05-12 03:39:34] [INFO] [softwarefj.models.cliente] Cliente creado: Juan Carlos Pérez (Cédula: 12345678, ID: 1641d002)
+[2026-05-12 03:39:34] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-12 03:39:34] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 2: Crear cliente con email inválido
+[2026-05-12 03:39:34] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-12 03:39:34] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 3: Reservar sala disponible por 2 horas (costo base)
+[2026-05-12 03:39:35] [ERROR] [softwarefj.controllers.reserva] Error inesperado al crear reserva: [ERR_VALIDACION] La fecha de reserva no puede ser anterior a la fecha actual (2026-05-12) (campo: fecha de reserva)
+[2026-05-12 03:39:35] [INFO] [softwarefj.simulacion] SIMULACIÓN - Operación 4: Reservar sala ya ocupada (conflicto de horario)
+[2026-05-12 03:39:35] [INFO] [softwarefj.models.cliente] Cliente creado: Ana García (Cédula: 11223344, ID: 71c22644)
+[2026-05-12 03:39:35] [INFO] [softwarefj.controllers.cliente] [FINALLY] Operación 'crear_cliente' finalizada
+[2026-05-12 03:39:35] [ERROR] [softwarefj.controllers.reserva] Error inesperado al crear reserva: [ERR_VALIDACION] La fecha de reserva no puede ser anterior a la fecha actual (2026-05-12) (campo: fecha de reserva)

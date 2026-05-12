@@ -1,5 +1,4 @@
 # =============================================================================
-# ARCHIVO: asesor_controller.py
 # asesor_controller.py — Controlador de operaciones sobre Asesores
 # =============================================================================
 """
@@ -90,9 +89,9 @@ class AsesorController:
         antes de instanciar y almacenar el nuevo registro.
 
         Args:
-            nombre (str): Nombre completo del asesor.
-            cedula (str): Documento de identidad único.
-            especialidad (str, optional): Área de experiencia del asesor. Por defecto es "".
+            nombre: Nombre completo del asesor.
+            cedula: Documento de identidad único.
+            especialidad: Área de experiencia del asesor. Por defecto es "".
 
         Returns:
             Asesor: La instancia del asesor recién creado y registrado.
@@ -138,7 +137,7 @@ class AsesorController:
         Busca y retorna un asesor específico mediante su identificador único (UUID).
 
         Args:
-            asesor_id (str): El ID interno generado para el asesor.
+            asesor_id: El ID interno generado para el asesor.
 
         Returns:
             Asesor: El objeto asesor correspondiente al ID.
@@ -158,7 +157,7 @@ class AsesorController:
         Busca y retorna un asesor mediante su documento de identidad.
 
         Args:
-            cedula (str): Cédula de identidad a buscar.
+            cedula: Cédula de identidad a buscar.
 
         Returns:
             Asesor: El objeto asesor correspondiente a la cédula.
@@ -179,7 +178,7 @@ class AsesorController:
         Realiza una búsqueda parcial y case-insensitive por el nombre de los asesores.
 
         Args:
-            nombre (str): Subcadena de texto a buscar dentro de los nombres.
+            nombre: Subcadena de texto a buscar dentro de los nombres.
 
         Returns:
             list[Asesor]: Lista de asesores cuyos nombres coincidan total o parcialmente.
@@ -194,7 +193,7 @@ class AsesorController:
         Filtra los asesores según su área de especialidad de manera case-insensitive.
 
         Args:
-            especialidad (str): Área temática a buscar.
+            especialidad: Área temática a buscar.
 
         Returns:
             list[Asesor]: Lista de asesores que pertenecen a la especialidad indicada.
@@ -208,7 +207,7 @@ class AsesorController:
         Actualiza selectivamente los atributos de un asesor existente.
 
         Args:
-            asesor_id (str): Identificador único del asesor a modificar.
+            asesor_id: Identificador único del asesor a modificar.
             **kwargs: Diccionario de atributos a actualizar (e.g., nombre, especialidad).
                       Nota: La cédula no se debe actualizar por este medio.
 
@@ -245,7 +244,7 @@ class AsesorController:
         Elimina un asesor del registro del sistema.
 
         Args:
-            asesor_id (str): Identificador único del asesor a remover.
+            asesor_id: Identificador único del asesor a remover.
 
         Returns:
             Asesor: El objeto asesor que fue eliminado.

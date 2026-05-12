@@ -1,6 +1,7 @@
 # Sistema Integral de Gestión — Software FJ
 
 ## Objetivo
+
 Sistema de escritorio en Python + Tkinter para gestionar clientes, servicios (salas, equipos, asesorías) y reservas, con arquitectura OOP rigurosa, excepciones personalizadas y logging.
 
 ---
@@ -145,6 +146,7 @@ def calcular_costo(self, duracion: float, unidad: str = "hora",
 ```
 
 Cada subclase **sobrescribe** este método agregando lógica propia (polimorfismo):
+
 - `ReservaSala`: recargo por capacidad > 20 personas
 - `AlquilerEquipo`: multiplicar por cantidad de unidades
 - `AsesoriaEspecializada`: recargo por área "legal"
@@ -180,6 +182,7 @@ Reserva(EntidadBase)
 ```
 
 **Transiciones válidas de estado:**
+
 ```
 PENDIENTE ──→ CONFIRMADA ──→ EN_CURSO ──→ COMPLETADA
     │              │              
@@ -277,29 +280,15 @@ SoftwareFJError (Exception base)
 
 ---
 
-## 7. División de Trabajo (5 Integrantes)
-
-| Integrante | Módulo | Archivos | Complejidad |
-|-----------|--------|----------|-------------|
-| **1** | Infraestructura + Base | `base.py`, `excepciones.py`, `logger_config.py`, `validadores.py`, `config.py` | ⭐⭐ Media |
-| **2** | Cliente (vertical) | `cliente.py`, `cliente_controller.py`, `cliente_vista.py` | ⭐⭐ Media |
-| **3** | Servicios (vertical) | `servicio.py` (ABC + 3 concretas), `catalogo.py`, `servicio_controller.py`, `servicio_vista.py` | ⭐⭐⭐ Alta |
-| **4** | Reservas (vertical) | `reserva.py`, `reserva_controller.py`, `reserva_vista.py` | ⭐⭐⭐ Alta |
-| **5** | Dashboard + Integración | `app.py`, `estilos.py`, `sidebar.py`, `widgets.py`, `log_vista.py`, `main.py`, `simulacion.py` | ⭐⭐⭐ Alta |
-
-**Orden de trabajo:** Integrante 1 primero (los demás dependen de base + excepciones). Integrantes 2, 3, 4 en paralelo. Integrante 5 integra al final y genera o afina la documentacion del proyecto y genera el Readme.md.
-
----
-
-## 8. Verificación
+## 7. Verificación
 
 ### Automatizada
+
 - Ejecutar `simulacion.py` que corre las 12 operaciones y verifica resultados esperados
 - Verificar que `logs/app.log` se genera correctamente
 
 ### Manual
+
 - Lanzar `main.py`, navegar por todos los módulos del dashboard
 - Crear cliente → crear reserva → confirmar → completar (flujo completo)
 - Provocar errores y verificar que la app no se cae
-
-

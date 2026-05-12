@@ -1,18 +1,16 @@
 # =============================================================================
-# ARCHIVO: app.py
 # app.py — Dashboard principal de Software FJ
-# PROPÓSITO: Punto de control central de la Interfaz Gráfica de Usuario (GUI).
-# DESCRIPCIÓN: Este archivo define la clase DashboardApp, la cual orquesta la 
-#              ventana principal, gestiona la navegación entre módulos (vistas) 
-#              e inicializa los controladores del backend. Implementa un diseño 
-#              de área central dinámica donde las vistas se cargan y destruyen 
-#              según la interacción del usuario.
 # =============================================================================
 """
-Este archivo implementa el 'Main Frame' o 'App Shell' del sistema.
-Utiliza un patrón de diseño orientado a objetos para encapsular la ventana de Tkinter,
-gestionando de manera centralizada los controladores de datos y permitiendo que 
-la aplicación sea escalable y fácil de mantener.
+Módulo de la Interfaz Gráfica de Usuario (GUI) y Dashboard.
+
+Este archivo define la clase DashboardApp, la cual orquesta la ventana 
+principal, gestiona la navegación entre módulos (vistas) e inicializa 
+los controladores del backend. Implementa un diseño de área central dinámica 
+donde las vistas se cargan y destruyen según la interacción del usuario.
+
+Utiliza un patrón de diseño orientado a objetos para encapsular la ventana 
+de Tkinter, gestionando de manera centralizada los controladores de datos.
 """
 
 # Importaciones de biblioteca estándar
@@ -245,8 +243,12 @@ class DashboardApp:
     def _crear_vista_inicio(self) -> tk.Frame:
         """
         Construye la pantalla de bienvenida (Dashboard). 
+        
         Recopila datos estadísticos de todos los controladores para mostrar 
         un resumen ejecutivo del estado del sistema.
+
+        Returns:
+            tk.Frame: El frame de Tkinter que contiene el dashboard principal.
         """
         # Frame contenedor local para la vista de inicio
         frame = tk.Frame(self._frame_central, bg=COLORES["fondo"])
@@ -363,7 +365,9 @@ class DashboardApp:
     def ejecutar(self) -> None:
         """
         Arranca el ciclo de eventos de Tkinter (mainloop). 
-        Este método es bloqueante y mantiene la ventana abierta.
+        
+        Este método es bloqueante y mantiene la ventana abierta interactuando 
+        con el usuario hasta que se cierra explícitamente.
         """
         logger.info("Iniciando aplicación Software FJ")
         self._root.mainloop()
